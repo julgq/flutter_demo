@@ -1,8 +1,10 @@
 // Import flutter helper library
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
 // https://pub.dartlang.org/packages/http#-readme-tab-
 import 'package:http/http.dart' as http;
+import 'models/image_model.dart';
 
 class App extends StatefulWidget {
   @override
@@ -15,9 +17,13 @@ class App extends StatefulWidget {
 class _App extends State<App> {
   int counter = 0;
 
-  void fetchImage() {
+  void fetchImage() async {
     counter++;
-    http.get('https://jsonplaceholder.typicode.com/photos/$counter');
+    var response =
+        await http.get('https://jsonplaceholder.typicode.com/photos/$counter');
+
+    var imageModel = ImageModel.fromJson(json.decode(response.body));
+    print(imageModel);
   }
 
   @override

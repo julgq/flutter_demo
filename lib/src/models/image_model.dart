@@ -7,7 +7,7 @@ class ImageModel {
   ImageModel(this.id, this.url, this.title);
 
   // Constructor usando Json
-  ImageModel.fromJson(Map<String, dynamic> parsedJson){
+  ImageModel.fromJson(Map<String, dynamic> parsedJson) {
     id = parsedJson['id'];
     url = parsedJson['url'];
     title = parsedJson['title'];
