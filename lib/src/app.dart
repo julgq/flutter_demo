@@ -1,10 +1,10 @@
 // Import flutter helper library
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 // https://pub.dartlang.org/packages/http#-readme-tab-
 import 'package:http/http.dart' as http;
 import 'models/image_model.dart';
+import 'widgets/image_list.dart';
 
 class App extends StatefulWidget {
   @override
@@ -17,6 +17,8 @@ class App extends StatefulWidget {
 class _App extends State<App> {
   int counter = 0;
 
+  List<ImageModel> images = [];
+
   void fetchImage() async {
     counter++;
     var response =
@@ -24,6 +26,10 @@ class _App extends State<App> {
 
     var imageModel = ImageModel.fromJson(json.decode(response.body));
     print(imageModel);
+
+    setState(() {
+      images.add(imageModel);
+    });
   }
 
   @override
@@ -31,7 +37,7 @@ class _App extends State<App> {
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
-      body: Text('$counter'),
+      body: ImageList(images),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: fetchImage,
