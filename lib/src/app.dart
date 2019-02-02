@@ -15,10 +15,15 @@ class App extends StatefulWidget {
 }
 
 class _App extends State<App> {
+
+  // contador incializado en 0 al abrir la aplicación
   int counter = 0;
 
+  // declaración de images una lista e objetos ImageModel
   List<ImageModel> images = [];
 
+  // Funcion fetchImage la cual hacer un get de un API, incrementa el counter en 1 y crea un objeto ImageModel.
+  // Agrega a images.add un objeto ImageModel al modelo.
   void fetchImage() async {
     counter++;
     var response =
@@ -37,7 +42,7 @@ class _App extends State<App> {
     // TODO: implement build
     return MaterialApp(
         home: Scaffold(
-      body: ImageList(images),
+      body: ImageList(images), // Muestra un widget ImageList al que se le pasa ls lista de images del state.
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: fetchImage,
